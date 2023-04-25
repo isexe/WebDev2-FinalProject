@@ -8,8 +8,9 @@ import { TicTacToeComponent } from './tic-tac-toe/tic-tac-toe.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
+import { FooterComponent } from './footer/footer.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,15 @@ import {MatIconModule} from '@angular/material/icon';
     GameComponent,
     TicTacToeComponent,
     LeaderboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
-    FlexLayoutModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

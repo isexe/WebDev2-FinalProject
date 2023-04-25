@@ -1,18 +1,9 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" routerLink="/tictactoe">Tic-Tac-Toe</a>
-        <a class="nav-item nav-link" routerLink="/leaderboard">Leaderboard</a>
+<mat-toolbar color="primary" id="navbar">
+    <span>Web Dev 2 Final Project </span>
+    <div class="navdiv">
+        <a class="navlinks" routerLink="/">Home</a>
+        <a class="navlinks" routerLink="/tictactoe">Tic-Tac-Toe</a>
+        <a class="navlinks" routerLink="/leaderboard">Leaderboard</a>
     </div>
-</nav>
-
-<!-- main content container -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </div>
-</div>
+</mat-toolbar>
+<router-outlet></router-outlet>
