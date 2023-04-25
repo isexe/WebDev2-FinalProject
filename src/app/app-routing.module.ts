@@ -2,18 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GameComponent } from './game';
 import { LeaderboardComponent } from './leaderboard';
-import { TicTacToeComponent } from './tic-tac-toe';
 
 const routes: Routes = [
-  { path: '', component: GameComponent},
+  { path: 'game', component: GameComponent },
   { path: 'leaderboard', component: LeaderboardComponent },
-  { path: 'tictactoe', component: TicTacToeComponent},
   //default redirect
-  {path: '**', redirectTo: ''}
+  { path: '**', redirectTo: 'game' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
