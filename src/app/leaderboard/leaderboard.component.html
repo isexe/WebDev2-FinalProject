@@ -1,25 +1,23 @@
-<body>
-  <table mat-table [dataSource]="records">
-    <!-- Username Column -->
-    <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef>Username</th>
-      <td mat-cell *matCellDef="let record">{{ record.username }}</td>
-    </ng-container>
+<table mat-table [dataSource]="records">
+  <!-- Username Column -->
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef>Username</th>
+    <td mat-cell *matCellDef="let record">{{ record.username }}</td>
+  </ng-container>
 
-    <!-- Username Column -->
-    <ng-container matColumnDef="wins">
-      <th mat-header-cell *matHeaderCellDef>Wins</th>
-      <td mat-cell *matCellDef="let record">{{ record.wins }}</td>
-    </ng-container>
+  <!-- Username Column -->
+  <ng-container matColumnDef="wins">
+    <th mat-header-cell *matHeaderCellDef>Wins</th>
+    <td mat-cell *matCellDef="let record">{{ record.wins }}</td>
+  </ng-container>
 
-    <!-- Username Column -->
-    <ng-container matColumnDef="losses">
-      <th mat-header-cell *matHeaderCellDef>Losses</th>
-      <td mat-cell *matCellDef="let record">{{ record.losses }}</td>
-    </ng-container>
+  <!-- Username Column -->
+  <ng-container matColumnDef="losses">
+    <th mat-header-cell *matHeaderCellDef>Losses</th>
+    <td mat-cell *matCellDef="let record">{{ record.losses }}</td>
+  </ng-container>
 
-    <!-- Row definations -->
-    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
-  </table>
-</body>
+  <!-- Row definations -->
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+</table>
