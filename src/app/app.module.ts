@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { GameComponent } from './game/game.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { FooterComponent } from './footer/footer.component';
 
 // Angular Imports
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -19,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     HeaderComponent,
     GameComponent,
     LeaderboardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatTableModule,
     MatGridListModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent],

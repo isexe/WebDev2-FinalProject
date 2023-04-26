@@ -1,11 +1,24 @@
-.navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background-color: #3f51b5;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  height: 56px;
-  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
-}
+
+#navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #3f51b5;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  }
+
+  .navlinks{
+    margin: 15px;
+  }
+
+  .navdiv{
+    float: right;
+  }
+  a:visited { 
+    text-decoration: none; 
+    color: white; 
+   }
