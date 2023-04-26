@@ -9,6 +9,7 @@
     align-items: center;
     height: 56px;
     font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    z-index: 1;
   }
 
   .navlinks{
