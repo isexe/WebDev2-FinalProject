@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GameComponent } from './game';
-import { LeaderboardComponent } from './leaderboard';
+import { TictactoeComponent } from './game/tictactoe';
+import { LeaderboardComponent } from './game/leaderboard';
 
 const routes: Routes = [
-  { path: 'game', component: GameComponent },
+  { path: 'game', component: TictactoeComponent },
   { path: 'leaderboard', component: LeaderboardComponent },
   //default redirect
   { path: '**', redirectTo: 'game' },

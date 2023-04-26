@@ -8,8 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 // Component Imports
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { GameComponent } from './game/game.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { TictactoeComponent } from './game/tictactoe/tictactoe.component';
+import { LeaderboardComponent } from './game/leaderboard/leaderboard.component';
 import { FooterComponent } from './footer/footer.component';
 
 // Angular Imports
@@ -28,7 +28,7 @@ import {MatButtonModule} from '@angular/material/button';
   declarations: [
     AppComponent,
     HeaderComponent,
-    GameComponent,
+    TictactoeComponent,
     LeaderboardComponent,
     FooterComponent
   ],
