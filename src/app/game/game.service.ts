@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class GameService {
   winner = ''
-  currentTurn = true;
 
   constructor() { 
 
