@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 
 @Component({
@@ -7,8 +7,15 @@ import { GameService } from '../game.service';
   styleUrls: ['./tictactoe.component.css']
 })
 export class TictactoeComponent{
-
   constructor(public gameService: GameService){
 
+  }
+
+  reset(){
+    this.gameService.reset();
+  }
+  playerMove(event: Event): void{
+    let id: string = (event.target as Element).id;
+    this.gameService.playerMove(id);
   }
 }
