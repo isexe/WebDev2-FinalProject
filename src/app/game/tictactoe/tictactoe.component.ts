@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { Game } from '../game.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tictactoe',
@@ -12,30 +13,25 @@ export class TictactoeComponent implements OnInit{
     grid: Array(9).fill(''),
     currentTurn: true
   }
+
+
   constructor(public gameService: GameService){
 
   }
+
   ngOnInit(){
     this.gameService.reset();
+
+    // this.gameService.getGrids();
   }
 
   reset(){
     this.gameService.reset();
+    this.game = this.gameService.getGame();
   }
-  playerMove(event: Event){
-    let id: string = (event.target as Element).id;
 
-    if(this.game.currentTurn == true){
-      (event.target as Element).textContent = 'X'
-      this.game.currentTurn = false;
-      (event.target as HTMLInputElement).disabled = true
-    }
-    else if(this.game.currentTurn == false){
-      (event.target as Element).textContent = 'O'
-      this.game.currentTurn = true;
-      (event.target as HTMLInputElement).disabled = true
-    }
-
-    this.gameService.checkWin(id);
+  OnClick(tile: number, event: Event){
+    this.gameService.playerMove(tile, event);
+    this.game = this.gameService.getGame();
   }
 }

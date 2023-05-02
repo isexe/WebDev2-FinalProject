@@ -1,30 +1,30 @@
 
 
 <!-- <mat-grid-list cols="3" rowHeight="250px">
-  <mat-grid-tile id="tile1" (click)="playerMove($event)">1</mat-grid-tile>
-  <mat-grid-tile id="tile2" (click)="playerMove($event)">2</mat-grid-tile>
-  <mat-grid-tile id="tile3" (click)="playerMove($event)">3</mat-grid-tile>
-  <mat-grid-tile id="tile4" (click)="playerMove($event)">4</mat-grid-tile>
-  <mat-grid-tile id="tile5" (click)="playerMove($event)">5</mat-grid-tile>
-  <mat-grid-tile id="tile6" (click)="playerMove($event)">6</mat-grid-tile>
-  <mat-grid-tile id="tile7" (click)="playerMove($event)">7</mat-grid-tile>
-  <mat-grid-tile id="tile8" (click)="playerMove($event)">8</mat-grid-tile>
+  <mat-grid-tile id="tile1" (click)="OnClick($event)">1</mat-grid-tile>
+  <mat-grid-tile id="tile2" (click)="OnClick($event)">2</mat-grid-tile>
+  <mat-grid-tile id="tile3" (click)="OnClick($event)">3</mat-grid-tile>
+  <mat-grid-tile id="tile4" (click)="OnClick($event)">4</mat-grid-tile>
+  <mat-grid-tile id="tile5" (click)="OnClick($event)">5</mat-grid-tile>
+  <mat-grid-tile id="tile6" (click)="OnClick($event)">6</mat-grid-tile>
+  <mat-grid-tile id="tile7" (click)="OnClick($event)">7</mat-grid-tile>
+  <mat-grid-tile id="tile8" (click)="OnClick($event)">8</mat-grid-tile>
 </mat-grid-list> -->
 <div class="tictactoe">
   <div class="col">
-    <button class="gameBtn" id="tile1" (click)="playerMove($event)">-</button>
-    <button class="gameBtn" id="tile2" (click)="playerMove($event)">-</button>
-    <button class="gameBtn" id="tile3" (click)="playerMove($event)">-</button>
+    <button class="gameBtn" id="tile1" (click)="OnClick(0, $event)">{{game.grid[0]}}</button>
+    <button class="gameBtn" id="tile2" (click)="OnClick(1, $event)">{{game.grid[1]}}</button>
+    <button class="gameBtn" id="tile3" (click)="OnClick(2, $event)">{{game.grid[2]}}</button>
   </div>
   <div class="col">
-    <button class="gameBtn" id="tile4" (click)="playerMove($event)">-</button>
-    <button class="gameBtn" id="tile5" (click)="playerMove($event)">-</button>
-    <button class="gameBtn" id="tile6" (click)="playerMove($event)">-</button>
+    <button class="gameBtn" id="tile4" (click)="OnClick(3, $event)" clicked = true;>{{game.grid[3]}}</button>
+    <button class="gameBtn" id="tile5" (click)="OnClick(4, $event)">{{game.grid[4]}}</button>
+    <button class="gameBtn" id="tile6" (click)="OnClick(5, $event)">{{game.grid[5]}}</button>
   </div>
-  <div class="col">
-    <button class="gameBtn" id="tile7" (click)="playerMove($event)">-</button>
-    <button class="gameBtn" id="tile8" (click)="playerMove($event)">-</button>
-    <button class="gameBtn" id="tile9" (click)="playerMove($event)">-</button>
+  <div class="col"> 
+    <button class="gameBtn" id="tile7" (click)="OnClick(6, $event)">{{game.grid[6]}}</button>
+    <button class="gameBtn" id="tile8" (click)="OnClick(7, $event)">{{game.grid[7]}}</button>
+    <button class="gameBtn" id="tile9" (click)="OnClick(8, $event)">{{game.grid[8]}}</button>
   </div>
 </div>
 
