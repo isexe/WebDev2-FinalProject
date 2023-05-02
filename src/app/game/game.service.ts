@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Game } from './game.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
   winner = ''
-
+  game: Game = { 
+  grid: Array(9).fill(''),
+  currentTurn: true
+}
   constructor() { 
 
   }
@@ -15,8 +19,7 @@ export class GameService {
     console.log('game reset');
   }
 
-  playerMove(id: string){
-    //need to make it so when button is pressed HTML text is replaced and disabled so you cannot click it again
+  checkWin(id: string){
     console.log(id)
   }
 }
