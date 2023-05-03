@@ -7,7 +7,7 @@
     color: #fff;
     display: flex;
     align-items: center;
-    height: 56px;
+    height: 50px;
     font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
     z-index: 1;
   }
@@ -19,7 +19,7 @@
   .navdiv{
     float: right;
   }
-  a:visited { 
-    text-decoration: none; 
-    color: white; 
+  a:visited {
+    text-decoration: none;
+    color: white;
    }
