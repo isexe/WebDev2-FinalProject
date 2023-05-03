@@ -9,12 +9,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GameService {
   winner = ''
-  game: Game = { 
+  game: Game = {
   grid: Array(9).fill(null),
   currentTurn: true
 }
   // private gameUpdate = new Subject<Game>();
-  constructor() { 
+  constructor() {
 
   }
 
@@ -31,7 +31,7 @@ export class GameService {
       grid: Array(9).fill(null),
       currentTurn: true
     };
-    
+
   }
 
   getGame(): Game{
@@ -43,12 +43,12 @@ export class GameService {
     if(this.game.currentTurn == true){
       this.game.grid[tile] = 'X';
       this.game.currentTurn = false;
-      (event.target as HTMLInputElement).disabled = true
+      //(event.target as HTMLInputElement).disabled = true
     }
     else if(this.game.currentTurn == false){
       this.game.grid[tile] = 'O';
       this.game.currentTurn = true;
-      (event.target as HTMLInputElement).disabled = true
+      //(event.target as HTMLInputElement).disabled = true
     }
   }
 }

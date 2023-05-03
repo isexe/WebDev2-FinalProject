@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./tictactoe.component.css']
 })
 export class TictactoeComponent implements OnInit{
-  game: Game = { 
+  game: Game = {
     grid: Array(9).fill(''),
     currentTurn: true
   }
@@ -28,10 +28,13 @@ export class TictactoeComponent implements OnInit{
   reset(){
     this.gameService.reset();
     this.game = this.gameService.getGame();
+
   }
 
   OnClick(tile: number, event: Event){
-    this.gameService.playerMove(tile, event);
-    this.game = this.gameService.getGame();
+    if((event.target as HTMLElement).textContent == ""){
+      this.gameService.playerMove(tile, event);
+      this.game = this.gameService.getGame();
+    }
   }
 }
