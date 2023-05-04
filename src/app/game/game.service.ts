@@ -39,16 +39,16 @@ export class GameService {
   }
 
 
-  playerMove(tile: number, event: Event){
+  playerMove(tile: number, element: HTMLElement){
     if(this.game.currentTurn == true){
       this.game.grid[tile] = 'X';
       this.game.currentTurn = false;
-      //(event.target as HTMLInputElement).disabled = true
+      (element as HTMLInputElement).disabled = true
     }
     else if(this.game.currentTurn == false){
       this.game.grid[tile] = 'O';
       this.game.currentTurn = true;
-      //(event.target as HTMLInputElement).disabled = true
+      (element as HTMLInputElement).disabled = true
     }
   }
 }
