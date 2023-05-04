@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { TictactoeComponent } from './game/tictactoe/tictactoe.component';
 import { LeaderboardComponent } from './game/leaderboard/leaderboard.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
 
 // Angular Imports
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     TictactoeComponent,
     LeaderboardComponent,
     FooterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

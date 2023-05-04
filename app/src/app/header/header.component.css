@@ -1,27 +1,31 @@
-
 #navbar {
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background-color: #3f51b5;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
-    z-index: 1;
-  }
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #3f51b5;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  z-index: 1;
+}
 
-  .navlinks{
-    margin: 15px;
-  }
+.navlinks {
+  margin: 15px;
+}
 
-  .navdiv{
-    float: right;
-  }
-  a:visited {
-    text-decoration: none;
-    color: white;
-   }
+.navdiv {
+  float: right;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: rgb(175, 209, 255);
+}
