@@ -3,25 +3,30 @@
   border: solid 2px #000;
   width: 200px;
   height: 200px;
-  margin-top: 10px;
-  margin-left: 10px;
-  
-  font-size: 750%;
+  margin: auto;
+  text-align: center;
+
+  font-size: 200px;
 }
 
 .tictactoe{
   display: flex;
   justify-content: center;
-  height  : 600px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  
+  height: auto;
+  margin-top: 25px;
+  margin-bottom: 75px; /*!important: this must be at least equal to height of footer */
+
   width: 100%;
 }
 
 .col{
   display: flex;
   flex-direction: column;
+}
+
+.results {
+  text-align: center;
+  margin-bottom: 75px;  /*!important: this must be at least equal to height of footer */
 }
 
 #resetBtn{
@@ -31,7 +36,7 @@
   margin-left: auto;
   margin-right: auto;
   display: block;
-  margin-top: 75px;
+  margin-top: 50px;
   width: 200px;
   height: 75px;
   font-size: x-large;
