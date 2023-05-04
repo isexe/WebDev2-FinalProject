@@ -66,9 +66,5 @@ export class TictactoeComponent implements OnInit{
 
       this.winner = this.gameService.getWinner();
     }
-    else {
-      // since the only time availTiles is zero is when all tiles are filled assume tie
-      this.winner = -1;
-    }
   }
 }

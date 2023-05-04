@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Game } from './game.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +10,12 @@ import { map } from 'rxjs/operators';
 export class GameService {
   winner = 0;
   game: Game = {
-    grid: Array(9).fill(null),
+    grid: Array(9).fill(''),
     currentTurn: true,
   };
 
-  users: Array<any> = [];
-
   // private gameUpdate = new Subject<Game>();
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   //constructor() {  }
 
   // getGrids(){
@@ -30,7 +29,7 @@ export class GameService {
   reset() {
     this.winner = 0;
     this.game = {
-      grid: Array(9).fill(null),
+      grid: Array(9).fill(''),
       currentTurn: true,
     };
   }
@@ -44,22 +43,21 @@ export class GameService {
   }
 
   getUsers(): any {
-    //! will need to be updated when deployed
+    //! may need to be updated when deployed
     // could implment map here to format return
-    return this.http.get<{ message: string; users: any }>('/api/users')
-      .pipe(
-        map((usersData) => {
-          return usersData.users.map((user: any) => {
-            return {
-              name: user.name,
-              wins: user.wins,
-              losses: user.losses,
-              ties: user.ties,
-              _id: user._id,
-            };
-          });
-        })
-      );
+    return this.http.get<{ message: string; users: any }>('/api/users').pipe(
+      map((usersData) => {
+        return usersData.users.map((user: any) => {
+          return {
+            name: user.name,
+            wins: user.wins,
+            losses: user.losses,
+            ties: user.ties,
+            _id: user._id,
+          };
+        });
+      })
+    );
   }
 
   playerMove(tile: number, element: HTMLElement) {
@@ -130,5 +128,48 @@ export class GameService {
         else if (this.game.grid[2] == 'O') this.winner = 2;
       }
     }
+
+    // check for full board
+    if (this.winner == 0) {
+      var count = 0;
+      for (count = 0; count < this.game.grid.length; count++) {
+        if (!(this.game.grid[count] == 'X' || this.game.grid[count] == 'O')) {
+          break;
+        }
+      }
+
+      if (count == this.game.grid.length) {
+        this.winner = -1;
+      }
+    }
+
+    // if there is winner, update user record
+    if (this.winner != 0) {
+      switch (this.winner) {
+        case -1:
+          this.updateUserRecord('ties', 1);
+          break;
+        case 1:
+          this.updateUserRecord('wins', 1);
+          break;
+        case 2:
+          this.updateUserRecord('losses', 1);
+          break;
+      }
+    }
+  }
+
+  private updateUserRecord(field: string, value: number): void {
+    var user = { name: 'Test', wins: 0, losses: 0, ties: 0 };
+
+    var tmpUser = 'Test';
+    this.http
+      .post<{ message: string }>(
+        '/api/records/' + tmpUser + '/' + field + '/' + value,
+        user
+      )
+      .subscribe((data) => {
+        console.log(data.message);
+      });
   }
 }

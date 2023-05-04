@@ -17,8 +17,13 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit(): void {
     // https://stackoverflow.com/questions/46746598/angular-material-how-to-refresh-a-data-source-mat-table
-    this.gameService.getUsers().subscribe((users: any) => {
-      this.dataSource.data = users;
+    this.gameService.getUsers().subscribe((users: Array<any>) => {
+      this.dataSource.data = users.sort((a, b) =>{
+        // may want to improve this sorting later
+        // could do weighted values (b.wins*2 + b.ties - b.losses)?
+        // return (b.wins - b.losses) - (a.wins - a.losses);
+        return b.wins - a.wins;
+      })
     });
   }
 }
