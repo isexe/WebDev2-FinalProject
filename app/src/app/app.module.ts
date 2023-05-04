@@ -23,6 +23,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import {MatButtonModule} from '@angular/material/button';
     HeaderComponent,
     TictactoeComponent,
     LeaderboardComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +43,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatTableModule,
     MatGridListModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

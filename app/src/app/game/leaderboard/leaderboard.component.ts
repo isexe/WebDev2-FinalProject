@@ -1,16 +1,24 @@
+import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { GameService } from '../game.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'game-leaderboard',
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.css'],
 })
-export class LeaderboardComponent {
-  tableColumns: string[] = ['username', 'wins', 'losses'];
+export class LeaderboardComponent implements OnInit {
+  tableColumns: string[] = ['name', 'wins', 'losses', 'ties'];
 
-  records = [
-    { username: 'Player1', wins: 1, losses: 0 },
-    { username: 'Player2', wins: 1, losses: 1 },
-    { username: 'Player3', wins: 0, losses: 1 },
-  ];
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+
+  constructor(public gameService: GameService) {}
+
+  ngOnInit(): void {
+    // https://stackoverflow.com/questions/46746598/angular-material-how-to-refresh-a-data-source-mat-table
+    this.gameService.getUsers().subscribe((users: any) => {
+      this.dataSource.data = users;
+    });
+  }
 }

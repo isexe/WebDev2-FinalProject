@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Game } from './game.model';
-import { Subscription } from 'rxjs';
-import { Subject } from 'rxjs'
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GameService {
-  winner = 0
+  winner = 0;
   game: Game = {
     grid: Array(9).fill(null),
-    currentTurn: true
-  }
-  // private gameUpdate = new Subject<Game>();
-  constructor() {
+    currentTurn: true,
+  };
 
-  }
+  users: Array<any> = [];
+
+  // private gameUpdate = new Subject<Game>();
+  constructor(private http: HttpClient) { }
+  //constructor() {  }
 
   // getGrids(){
   //   this.http.get<{grid: String[], currentTurn: boolean}>
@@ -30,9 +31,8 @@ export class GameService {
     this.winner = 0;
     this.game = {
       grid: Array(9).fill(null),
-      currentTurn: true
+      currentTurn: true,
     };
-
   }
 
   getGame(): Game {
@@ -43,17 +43,34 @@ export class GameService {
     return this.winner;
   }
 
+  getUsers(): any {
+    //! will need to be updated when deployed
+    // could implment map here to format return
+    return this.http.get<{ message: string; users: any }>('/api/users')
+      .pipe(
+        map((usersData) => {
+          return usersData.users.map((user: any) => {
+            return {
+              name: user.name,
+              wins: user.wins,
+              losses: user.losses,
+              ties: user.ties,
+              _id: user._id,
+            };
+          });
+        })
+      );
+  }
 
   playerMove(tile: number, element: HTMLElement) {
     if (this.game.currentTurn == true) {
       this.game.grid[tile] = 'X';
       this.game.currentTurn = false;
-      (element as HTMLInputElement).disabled = true
-    }
-    else if (this.game.currentTurn == false) {
+      (element as HTMLInputElement).disabled = true;
+    } else if (this.game.currentTurn == false) {
       this.game.grid[tile] = 'O';
       this.game.currentTurn = true;
-      (element as HTMLInputElement).disabled = true
+      (element as HTMLInputElement).disabled = true;
     }
 
     this.checkGameState();
@@ -67,7 +84,10 @@ export class GameService {
     // check horizontal position
     if (this.winner == 0) {
       for (var i = 0; i < 3; i++) {
-        if (this.game.grid[i * 3] == this.game.grid[i * 3 + 1] && this.game.grid[i * 3] == this.game.grid[i * 3 + 2]) {
+        if (
+          this.game.grid[i * 3] == this.game.grid[i * 3 + 1] &&
+          this.game.grid[i * 3] == this.game.grid[i * 3 + 2]
+        ) {
           if (this.game.grid[i * 3] == 'X') this.winner = 1;
           else if (this.game.grid[i * 3] == 'O') this.winner = 2;
         }
@@ -79,7 +99,10 @@ export class GameService {
     // check vertical position
     if (this.winner == 0) {
       for (var i = 0; i < 3; i++) {
-        if (this.game.grid[i] == this.game.grid[i + 3] && this.game.grid[i] == this.game.grid[i + 6]) {
+        if (
+          this.game.grid[i] == this.game.grid[i + 3] &&
+          this.game.grid[i] == this.game.grid[i + 6]
+        ) {
           if (this.game.grid[i] == 'X') this.winner = 1;
           else if (this.game.grid[i] == 'O') this.winner = 2;
         }
@@ -89,14 +112,20 @@ export class GameService {
     }
 
     if (this.winner == 0) {
-      if(this.game.grid[0] == this.game.grid[4] && this.game.grid[0] == this.game.grid[8]){
+      if (
+        this.game.grid[0] == this.game.grid[4] &&
+        this.game.grid[0] == this.game.grid[8]
+      ) {
         if (this.game.grid[0] == 'X') this.winner = 1;
         else if (this.game.grid[0] == 'O') this.winner = 2;
       }
     }
 
     if (this.winner == 0) {
-      if(this.game.grid[2] == this.game.grid[4] && this.game.grid[2] == this.game.grid[6]){
+      if (
+        this.game.grid[2] == this.game.grid[4] &&
+        this.game.grid[2] == this.game.grid[6]
+      ) {
         if (this.game.grid[2] == 'X') this.winner = 1;
         else if (this.game.grid[2] == 'O') this.winner = 2;
       }

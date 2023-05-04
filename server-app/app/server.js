@@ -68,12 +68,15 @@ app.post("/api/users", async (req, res, next) => {
   
 });
 
-app.post("/api/records/:username/:field=:value", (req, res, next) => {
+// username gets the record from the db
+// field updates the reqested field
+// value increments field by x amount
+app.post("/api/records/:username/:field+=:value", (req, res, next) => {
   // find the user with given username and update their record history with the given username
   console.log(`Updating user ${username}...`)
 
   UserModel.findOne({name: username}).exec().then(user => {
-    user
+    // need to update the found user's value here
   });
 });
 
