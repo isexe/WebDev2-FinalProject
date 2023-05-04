@@ -13,7 +13,7 @@ export class TictactoeComponent implements OnInit{
     grid: Array(9).fill(''),
     currentTurn: true
   }
-
+  winner: Number = 0;
 
   constructor(public gameService: GameService){
 
@@ -33,11 +33,18 @@ export class TictactoeComponent implements OnInit{
       var btn = btns[i] as HTMLInputElement;
       btn.disabled = false;
     }
+    this.winner = 0;
   }
 
   OnClick(tile: number, event: Event){
+    if(this.winner != 0) return;
+
     this.gameService.playerMove(tile, (event.target as HTMLInputElement))
     this.game = this.gameService.getGame();
+
+    this.winner = this.gameService.getWinner();
+
+    if(this.winner != 0) return;
 
     var tiles = document.getElementsByClassName("gameBtn");
     var availTiles = [];
@@ -48,7 +55,6 @@ export class TictactoeComponent implements OnInit{
       }
     }
 
-
     if(availTiles.length > 0){
       var tileNum = Math.floor(Math.random() * availTiles.length);
       var selectedTile = availTiles[tileNum];
@@ -58,6 +64,8 @@ export class TictactoeComponent implements OnInit{
 
       this.gameService.playerMove(tileNum, selectedTile);
       this.game = this.gameService.getGame();
+
+      this.winner = this.gameService.getWinner();
     }
   }
 }
