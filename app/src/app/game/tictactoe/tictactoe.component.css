@@ -9,6 +9,14 @@
   font-size: 200px;
 }
 
+.gameBtn:disabled {
+  color: black;
+}
+
+.gameBtn:enabled:hover {
+  background: rgb(129, 183, 201);
+}
+
 .tictactoe{
   display: flex;
   justify-content: center;
