@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { GameService } from '../game/game.service';
 
 @Component({
   selector: 'app-login',
@@ -6,17 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  constructor(public gameService: GameService){}
 
-  users = [
-    {username:"player1", password:""},
-    {username:"player2", password:""},
-    {username:"player3", password:""}
-  ];
+  user = new FormGroup({
+    name: new FormControl(),
+    password: new FormControl()
+  })
 
-  enteredUser = '';
-  enteredPassword = '';
+  OnSubmit(name: string, password: string) {
+    var data = this.gameService.loginUser({name, password});
 
-  OnSubmit() {
-    const user = {username: this.enteredUser, password: this.enteredPassword}
+    console.log(data.message);
   }
 }

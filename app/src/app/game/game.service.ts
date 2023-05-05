@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Game } from './game.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
 
@@ -14,17 +14,9 @@ export class GameService {
     currentTurn: true,
   };
 
-  // private gameUpdate = new Subject<Game>();
+  username: string = '';
+
   constructor(private http: HttpClient) {}
-  //constructor() {  }
-
-  // getGrids(){
-  //   this.http.get<{grid: String[], currentTurn: boolean}>
-  // }
-
-  // getGameUpdateListener(){
-  //   return this.gameUpdate.asObservable();
-  // }
 
   reset() {
     this.winner = 0;
@@ -47,6 +39,7 @@ export class GameService {
     // could implment map here to format return
     return this.http.get<{ message: string; users: any }>('/api/users').pipe(
       map((usersData) => {
+        console.log(usersData.message);
         return usersData.users.map((user: any) => {
           return {
             name: user.name,
@@ -58,6 +51,15 @@ export class GameService {
         });
       })
     );
+  }
+
+  loginUser(user: {name: string, password: string}): any {
+    return this.http.post<{message: string, status: number}>('/api/users', user).subscribe((data): any => {
+      if(data.status == 200){
+        this.username = user.name;
+      }
+      return data;
+    });
   }
 
   playerMove(tile: number, element: HTMLElement) {
@@ -162,7 +164,7 @@ export class GameService {
   private updateUserRecord(field: string, value: number): void {
     var user = { name: 'Test', wins: 0, losses: 0, ties: 0 };
 
-    var tmpUser = 'Test';
+    var tmpUser = 'Player';
     this.http
       .post<{ message: string }>(
         '/api/records/' + tmpUser + '/' + field + '/' + value,
