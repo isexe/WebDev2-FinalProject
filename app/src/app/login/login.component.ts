@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,16 +8,19 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  username = new FormControl('');
+  password = new FormControl('');
+
   users = [
     {username:"player1", password:""},
     {username:"player2", password:""},
     {username:"player3", password:""}
   ];
 
-  enteredUser = '';
-  enteredPassword = '';
-
   OnSubmit() {
-    const user = {username: this.enteredUser, password: this.enteredPassword}
+
+    if (this.username.value && this.password.value) {
+
+    }
   }
 }
