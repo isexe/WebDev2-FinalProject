@@ -53,7 +53,7 @@ app.post("/api/users", async (req, res, next) => {
 		return;
 	}
 
-	const user = new UserModel({
+	const newUser = new UserModel({
 		name: req.body.name,
 		password: req.body.password,
 		wins: 0,
@@ -62,11 +62,11 @@ app.post("/api/users", async (req, res, next) => {
 		createDate: Date.now(),
 	});
 
-	console.log(user);
+	console.log(newUser);
 
-	UserModel.create(user).then(() => {
+	UserModel.create(newUser).then(() => {
 		res.status(201).json({
-			message: "User added successfully",
+			message: `User ${newUser.name} created successfully`,
 		});
 	});
 });
