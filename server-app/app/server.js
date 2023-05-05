@@ -39,11 +39,16 @@ app.get("/api/users", (req, res) => {
 });
 
 app.post("/api/users", async (req, res, next) => {
-	var result = await UserModel.exists({ name: req.body.name }).exec();
+	var user = await UserModel.findOne({ name: req.body.name }).exec();
 
-	if (result != null) {
+	if (user != null) {
+    if(req.body.password == user.password) {
+      res.status(200).json({message: "Login successful"});
+      return;
+    }
+
 		res.status(409).json({
-			message: "Username already exists, please try again.",
+			message: "Username or password is not correct.",
 		});
 		return;
 	}
@@ -70,7 +75,7 @@ app.post("/api/users", async (req, res, next) => {
 // field updates the reqested field
 // value increments field by x amount
 app.post("/api/records/:username/:field/:value", (req, res, next) => {
-	console.log(`Updating user ${req.params.username}...`);
+	//console.log(`Updating user ${req.params.username}...`);
 
   var username = req.params.username;
   var field = req.params.field;
@@ -83,7 +88,7 @@ app.post("/api/records/:username/:field/:value", (req, res, next) => {
           $inc: {
             wins: value
           }
-        }).then(() => {res.status(201).json({message: "User.wins updated successfully"})});
+        }).then(() => {res.status(201).json({message: `${username}.wins updated successfully`})});
       break;
     case "losses":
       UserModel.updateOne({name: username},
@@ -91,7 +96,7 @@ app.post("/api/records/:username/:field/:value", (req, res, next) => {
           $inc: {
             losses: value
           }
-        }).then(() => {res.status(201).json({message: "User.losses updated successfully"})});
+        }).then(() => {res.status(201).json({message: `${username}.losses updated successfully`})});
       break;
     case "ties":
       UserModel.updateOne({name: username},
@@ -99,11 +104,7 @@ app.post("/api/records/:username/:field/:value", (req, res, next) => {
           $inc: {
             ties: value
           }
-        }).then(() => {res.status(201).json({message: "User.ties updated successfully"})});
+        }).then(() => {res.status(201).json({message: `${username}.ties updated successfully`})});
       break;
   }
 });
-
-// app.delete("/api/users/:id", (req, res, next) => {
-
-// });
